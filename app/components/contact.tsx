@@ -1,59 +1,56 @@
-import { profile } from "../data/portfolio";
+import type { Content } from "../data/content";
+import { profile } from "../data/shared";
 import { SectionHeading } from "./section-heading";
 import {
-  GitHubIcon,
   GlobeIcon,
   LinkedInIcon,
   MailIcon,
   PhoneIcon,
 } from "./icons";
 
-const channels = [
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    Icon: MailIcon,
-  },
-  {
-    label: "Phone",
-    value: profile.phoneDisplay,
-    href: `tel:${profile.phone}`,
-    Icon: PhoneIcon,
-  },
-  {
-    label: "LinkedIn",
-    value: "in/nhutminhit2001",
-    href: profile.socials.linkedin,
-    Icon: LinkedInIcon,
-  },
-  {
-    label: "GitHub",
-    value: "NhutMinhIT",
-    href: profile.socials.github,
-    Icon: GitHubIcon,
-  },
-  {
-    label: "Website",
-    value: "nhutminhit.io.vn",
-    href: profile.socials.website,
-    Icon: GlobeIcon,
-  },
-];
+export function Contact({ content }: { content: Content }) {
+  const copy = content.sections.contact;
+  const { channels } = content.ui;
 
-export function Contact() {
+  const items = [
+    {
+      label: channels.email,
+      value: profile.email,
+      href: `mailto:${profile.email}`,
+      Icon: MailIcon,
+    },
+    {
+      label: channels.phone,
+      value: profile.phoneDisplay,
+      href: `tel:${profile.phone}`,
+      Icon: PhoneIcon,
+    },
+    {
+      label: channels.linkedin,
+      value: "in/nhutminhit2001",
+      href: profile.socials.linkedin,
+      Icon: LinkedInIcon,
+    },
+    {
+      label: channels.website,
+      value: "nhutminhit.io.vn",
+      href: profile.socials.website,
+      Icon: GlobeIcon,
+    },
+  ];
+
   return (
     <section id="contact" className="py-20">
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
-          label="contact"
-          title="Let's work together"
-          description="Have a project, role, or idea in mind? I'm always open to a conversation."
+          label={copy.label}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8">
           <ul className="grid gap-3 sm:grid-cols-2">
-            {channels.map(({ label, value, href, Icon }) => {
+            {items.map(({ label, value, href, Icon }) => {
               const external = href.startsWith("http");
               return (
                 <li key={label}>

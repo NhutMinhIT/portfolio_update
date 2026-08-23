@@ -1,18 +1,19 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { profile } from "./data/portfolio";
+import type { Content } from "../data/content";
+import { profile } from "../data/shared";
 
-export const alt = `${profile.name} — ${profile.role}`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const ogSize = { width: 1200, height: 630 };
+export const ogContentType = "image/png";
 
 // Load the avatar once at module init (hoisted static I/O)
 const avatarDataUrl = `data:image/png;base64,${readFileSync(
   join(process.cwd(), "public", "nguyennhutminh.png")
 ).toString("base64")}`;
 
-export default function OpengraphImage() {
+/** Social card for one language version of the site. */
+export function renderOgImage(content: Content) {
   return new ImageResponse(
     (
       <div
@@ -68,7 +69,7 @@ export default function OpengraphImage() {
               color: "#22d3ee",
             }}
           >
-            {profile.headline}
+            {content.headline}
           </div>
           <div
             style={{
@@ -78,7 +79,7 @@ export default function OpengraphImage() {
               color: "#8a8a94",
             }}
           >
-            {profile.location} · {profile.url.replace("https://", "")}
+            {content.location} · {profile.url.replace("https://", "")}
           </div>
         </div>
 
@@ -98,6 +99,6 @@ export default function OpengraphImage() {
         />
       </div>
     ),
-    { ...size }
+    { ...ogSize }
   );
 }

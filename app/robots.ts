@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { profile } from "./data/portfolio";
+import { profile } from "./data/shared";
 
 export default function robots(): MetadataRoute.Robots {
   return {

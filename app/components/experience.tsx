@@ -1,7 +1,15 @@
-import { experiences } from "../data/portfolio";
+import type { Content } from "../data/content";
+import { projectsByCompany, RoleProjects } from "./projects";
 import { SectionHeading } from "./section-heading";
 
-export function Experience() {
+export function Experience({ content }: { content: Content }) {
+  const copy = content.sections.experience;
+  const { experiences } = content;
+  // The first role that has projects owns the `projects` anchor.
+  const anchorCompany = experiences.find(
+    (exp) => projectsByCompany(content, exp.company).length > 0
+  )?.company;
+
   return (
     <section
       id="experience"
@@ -9,9 +17,9 @@ export function Experience() {
     >
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
-          label="work-experience"
-          title="Work Experience"
-          description="Roles where I've delivered production software for real businesses."
+          label={copy.label}
+          title={copy.title}
+          description={copy.description}
         />
 
         <ol className="relative ml-3 border-l border-[var(--color-border)]">
@@ -55,6 +63,12 @@ export function Experience() {
                     </li>
                   ))}
                 </ul>
+
+                <RoleProjects
+                  projects={projectsByCompany(content, exp.company)}
+                  label={content.ui.projectsInRole}
+                  anchor={exp.company === anchorCompany}
+                />
               </div>
             </li>
           ))}

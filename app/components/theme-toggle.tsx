@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Content } from "../data/content";
 import { MoonIcon, SunIcon } from "./icons";
 
 type Theme = "light" | "dark";
@@ -10,9 +11,10 @@ function getInitialTheme(): Theme {
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ content }: { content: Content }) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
+  const { ui } = content;
 
   useEffect(() => {
     setTheme(getInitialTheme());
@@ -38,8 +40,8 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Light mode" : "Dark mode"}
+      aria-label={isDark ? ui.switchToLight : ui.switchToDark}
+      title={isDark ? ui.lightMode : ui.darkMode}
       className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-fg)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
     >
       {/* Render icon only after mount to avoid hydration mismatch */}

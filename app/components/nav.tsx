@@ -1,27 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { navLinks, profile } from "../data/portfolio";
+import type { Content } from "../data/content";
+import { profile } from "../data/shared";
+import { LanguageToggle } from "./language-toggle";
 import { ThemeToggle } from "./theme-toggle";
 
-export function Nav() {
+export function Nav({ content }: { content: Content }) {
   const [open, setOpen] = useState(false);
+  const { ui, navLinks } = content;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-bg)_80%,transparent)] backdrop-blur-md">
       <nav
-        className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5"
+        className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-5"
         aria-label="Primary"
       >
         <a
           href="#top"
-          className="font-mono text-sm font-semibold tracking-tight text-[var(--color-fg)]"
+          aria-label={`${profile.name} — ${ui.backToTop}`}
+          className="group -m-1 inline-flex rounded-full p-1 transition-transform hover:-translate-y-0.5"
         >
-          <span className="text-[var(--color-accent)]">~/</span>
-          {profile.nameEn.toLowerCase().replace(/\s+/g, "-")}
+          <Image
+            src="/avatar.png"
+            alt={profile.name}
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 rounded-full border border-[var(--color-border)] object-cover ring-2 ring-transparent transition-colors group-hover:border-[var(--color-accent)] group-hover:ring-[color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
+          />
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -40,20 +51,21 @@ export function Nav() {
             download
             className="hidden rounded-md border border-[var(--color-border)] px-3 py-2 text-sm font-medium text-[var(--color-fg)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] sm:inline-block"
           >
-            Download CV
+            {ui.downloadCv}
           </a>
 
-          <ThemeToggle />
+          <LanguageToggle content={content} />
+
+          <ThemeToggle content={content} />
 
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label="Toggle navigation menu"
+            aria-label={ui.menuLabel}
             className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-fg)] md:hidden"
           >
-            <span className="sr-only">Menu</span>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               {open ? (
                 <path d="m6 6 12 12M18 6 6 18" />

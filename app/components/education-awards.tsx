@@ -1,8 +1,11 @@
-import { awards, educations } from "../data/portfolio";
+import type { Content } from "../data/content";
 import { SectionHeading } from "./section-heading";
 import { AwardIcon, GraduationIcon } from "./icons";
 
-export function EducationAwards() {
+export function EducationAwards({ content }: { content: Content }) {
+  const copy = content.sections.education;
+  const { educations, awards } = content;
+
   return (
     <section
       id="education"
@@ -10,9 +13,9 @@ export function EducationAwards() {
     >
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
-          label="education-awards"
-          title="Education & Awards"
-          description="Highlighted education history and major recognitions."
+          label={copy.label}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -55,7 +58,7 @@ export function EducationAwards() {
           <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
             <h3 className="mb-4 flex items-center gap-2 font-semibold text-[var(--color-fg)]">
               <AwardIcon width={18} height={18} className="text-[var(--color-accent)]" />
-              Awards &amp; Achievements
+              {content.ui.awardsTitle}
             </h3>
             <ul className="grid gap-3">
               {awards.map((award) => (

@@ -1,18 +1,20 @@
-import { skills } from "../data/portfolio";
+import type { Content } from "../data/content";
 import { SectionHeading } from "./section-heading";
 
-export function Skills() {
+export function Skills({ content }: { content: Content }) {
+  const copy = content.sections.skills;
+
   return (
     <section id="skills" className="border-b border-[var(--color-border)] py-20">
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
-          label="skills"
-          title="Tech Stack & Skills"
-          description="Tools and technologies I use to build scalable, high-performance products."
+          label={copy.label}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {skills.map((group) => (
+          {content.skills.map((group) => (
             <div
               key={group.category}
               className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5"
