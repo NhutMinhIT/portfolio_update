@@ -1,19 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "./data/shared";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { fontClassName } from "./lib/fonts";
 
 export const metadata: Metadata = {
   title: "404 — Page not found",
@@ -26,7 +14,7 @@ export default function GlobalNotFound() {
     <html
       lang="en"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontClassName} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col items-center justify-center gap-6 px-5 text-center font-sans">
         <p className="font-mono text-sm text-[var(--color-accent)]">404</p>

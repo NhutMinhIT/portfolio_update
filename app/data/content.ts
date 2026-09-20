@@ -121,10 +121,6 @@ export const content: Record<Lang, Content> = {
   vi: contentVi,
 };
 
-export function getContent(lang: Lang): Content {
-  return content[lang];
-}
-
 /** The language a switcher on `lang`'s page should point at. */
 export function otherLang(lang: Lang): Lang {
   return lang === "en" ? "vi" : "en";

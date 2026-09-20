@@ -3,13 +3,15 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { Content } from "../data/content";
 import { profile } from "../data/shared";
+import { brand, withAlpha } from "./theme";
 
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
-// Load the avatar once at module init (hoisted static I/O)
-const avatarDataUrl = `data:image/png;base64,${readFileSync(
-  join(process.cwd(), "public", "nguyennhutminh.png")
+// Load the avatar once at module init (hoisted static I/O). The OG card only
+// shows it at 360px, so it reads the downsized copy rather than the hero image.
+const avatarDataUrl = `data:image/jpeg;base64,${readFileSync(
+  join(process.cwd(), "public", "nguyennhutminh-og.jpg")
 ).toString("base64")}`;
 
 /** Social card for one language version of the site. */
@@ -24,10 +26,9 @@ export function renderOgImage(content: Content) {
           alignItems: "center",
           gap: "64px",
           padding: "80px",
-          background: "#0a0a0b",
-          backgroundImage:
-            "radial-gradient(circle at 20% 0%, rgba(52,211,153,0.18), transparent 45%), radial-gradient(circle at 90% 100%, rgba(34,211,238,0.14), transparent 40%)",
-          color: "#ededf0",
+          background: brand.bg,
+          backgroundImage: `radial-gradient(circle at 20% 0%, ${withAlpha(brand.accent, 0.18)}, transparent 45%), radial-gradient(circle at 90% 100%, ${withAlpha(brand.accent2, 0.14)}, transparent 40%)`,
+          color: brand.fg,
           fontFamily: "sans-serif",
         }}
       >
@@ -43,7 +44,7 @@ export function renderOgImage(content: Content) {
             style={{
               display: "flex",
               fontSize: 26,
-              color: "#34d399",
+              color: brand.accent,
               fontFamily: "monospace",
               marginBottom: 24,
             }}
@@ -66,7 +67,7 @@ export function renderOgImage(content: Content) {
               display: "flex",
               marginTop: 28,
               fontSize: 34,
-              color: "#22d3ee",
+              color: brand.accent2,
             }}
           >
             {content.headline}
@@ -76,7 +77,7 @@ export function renderOgImage(content: Content) {
               display: "flex",
               marginTop: 40,
               fontSize: 24,
-              color: "#8a8a94",
+              color: brand.muted,
             }}
           >
             {content.location} · {profile.url.replace("https://", "")}
@@ -94,7 +95,7 @@ export function renderOgImage(content: Content) {
             height: 360,
             borderRadius: 32,
             objectFit: "cover",
-            border: "4px solid rgba(52,211,153,0.5)",
+            border: `4px solid ${withAlpha(brand.accent, 0.5)}`,
           }}
         />
       </div>

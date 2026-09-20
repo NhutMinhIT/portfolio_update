@@ -183,18 +183,21 @@ export const contentEn: Content = {
   ],
   projects: [
     {
-      name: "Office Operations Management System",
+      name: "THACO E-Sign – Digital Signature & E-Approval Platform",
       org: "THACO Group",
       role: "Software Engineer",
       period: "Feb 2026 - Present",
-      teamSize: "6 members",
+      teamSize: "4 members · 20,000+ users · 70,000+ documents/month · ~3,000 documents/day · 6 member corporations",
       points: [
-        "Developed meeting room booking and approval workflows for multiple corporations and regions within THACO Group.",
-        "Built meeting management features: participants, chairpersons, agendas, discussions/comments, and supporting services.",
-        "Developed document approval workflows with template-based and dynamic signing processes integrated with digital signatures.",
-        "Implemented role-based access control and data authorization by corporation and permission groups for secure enterprise operations.",
+        "Analyzed and developed a Digital Signature & E-Approval platform serving 20,000+ users across 6 member corporations, processing 70,000+ documents per month.",
+        "Integrated Viettel MySign, THACO Internal CA, and the THACO Document Archive Management system, forming an end-to-end electronic document flow from submission and approval to digital signing and archiving.",
+        "Built a Dynamic Workflow Engine supporting flexible configuration of signing levels, signing methods, processing conditions, and sequential/parallel flows without depending on a fixed workflow.",
+        "Developed full document lifecycle management: submit, approve, request changes, return, reject, recall, edit, and re-submit.",
+        "Optimized the document processing pipeline, file streaming/upload/download, and database queries, improving responsiveness for a system with high document throughput.",
+        "Optimized architecture and infrastructure resources, contributing to lower operating costs, less redundant data processing, and better system scalability.",
+        "Contributed to digitizing the signing/approval process: fewer paper documents, shorter turnaround time, better traceability, and standardized business processes across the organization.",
       ],
-      stack: ["Node.js (Express)", "TypeScript", "React.js", "Vite", "Tailwind CSS", "Ant Design", "MUI", "Redux Toolkit"],
+      stack: ["Node.js (Express)", "TypeScript", "React.js", "Vite", "Tailwind CSS", "Ant Design", "Redux Toolkit"],
     },
     {
       name: "THACO AUTO MIS",

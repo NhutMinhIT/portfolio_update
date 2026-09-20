@@ -3,6 +3,12 @@
 export const profile = {
   name: "Nguyễn Nhựt Minh",
   nameEn: "Nguyen Nhut Minh",
+  firstName: "Minh",
+  lastName: "Nguyen Nhut",
+  username: "NhutMinhIT",
+  employer: "THACO Group",
+  city: "Ho Chi Minh City",
+  countryCode: "VN",
   email: "nhutminh.it19@gmail.com",
   phone: "+84369269410",
   phoneDisplay: "(+84) 369 269 410",

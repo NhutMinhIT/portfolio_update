@@ -168,18 +168,21 @@ export const contentVi: Content = {
   ],
   projects: [
     {
-      name: "Hệ thống Quản lý Vận hành Văn phòng",
+      name: "THACO E-Sign – Nền tảng Chữ ký số & Phê duyệt điện tử",
       org: "THACO Group",
       role: "Kỹ sư Phần mềm",
       period: "02/2026 - Hiện tại",
-      teamSize: "6 thành viên",
+      teamSize: "4 thành viên · 20.000+ người dùng · 70.000+ hồ sơ/tháng · ~3.000 hồ sơ/ngày · 6 tập đoàn thành viên",
       points: [
-        "Phát triển luồng đặt phòng họp và phê duyệt cho nhiều tổng công ty và khu vực trong THACO Group.",
-        "Xây dựng các tính năng quản lý cuộc họp: thành phần tham dự, chủ trì, chương trình họp, thảo luận/ý kiến và các dịch vụ đi kèm.",
-        "Phát triển luồng phê duyệt văn bản với quy trình ký theo mẫu và ký động, tích hợp chữ ký số.",
-        "Triển khai phân quyền theo vai trò và phân quyền dữ liệu theo tổng công ty, nhóm quyền để đảm bảo an toàn vận hành.",
+        "Phân tích và phát triển nền tảng Digital Signature & E-Approval phục vụ hơn 20.000 người dùng tại 6 tập đoàn thành viên, xử lý hơn 70.000 hồ sơ/tháng.",
+        "Tích hợp Viettel MySign, THACO Internal CA và hệ thống Quản lý lưu trữ văn thư THACO, hình thành luồng xử lý hồ sơ điện tử xuyên suốt từ trình ký, phê duyệt, ký số đến lưu trữ.",
+        "Xây dựng Dynamic Workflow Engine, hỗ trợ cấu hình linh hoạt các cấp ký, phương thức ký, điều kiện xử lý và quy trình tuần tự/song song mà không phụ thuộc vào một workflow cố định.",
+        "Phát triển cơ chế quản lý toàn bộ vòng đời hồ sơ: submit, approve, request changes, return, reject, recall, edit và re-submit.",
+        "Tối ưu pipeline xử lý tài liệu, file streaming/upload/download và database queries, cải thiện khả năng đáp ứng đối với hệ thống có lưu lượng hồ sơ lớn.",
+        "Tối ưu kiến trúc và tài nguyên hạ tầng, góp phần giảm chi phí vận hành, hạn chế xử lý dữ liệu dư thừa và nâng cao khả năng mở rộng hệ thống.",
+        "Góp phần số hóa quy trình ký/phê duyệt: giảm hồ sơ giấy, rút ngắn thời gian luân chuyển, tăng khả năng truy vết và chuẩn hóa quy trình nghiệp vụ trên toàn hệ thống.",
       ],
-      stack: ["Node.js (Express)", "TypeScript", "React.js", "Vite", "Tailwind CSS", "Ant Design", "MUI", "Redux Toolkit"],
+      stack: ["Node.js (Express)", "TypeScript", "React.js", "Vite", "Tailwind CSS", "Ant Design", "Redux Toolkit"],
     },
     {
       name: "THACO AUTO MIS",
@@ -203,7 +206,7 @@ export const contentVi: Content = {
       teamSize: "6 thành viên",
       points: [
         "Thiết lập kiến trúc frontend, quản lý mã nguồn, review code và duy trì tiêu chuẩn phát triển.",
-        "Phát triển module quản lý người dùng và phân quyền theo tổ chức cho THACO Group cùng 6 tổng công ty thành viên.",
+        "Phát triển module quản lý người dùng và phân quyền theo tổ chức cho THACO Group cùng 6 tập đoàn thành viên.",
         "Xây dựng quản lý chu kỳ đánh giá: kỳ đánh giá, nhóm tiêu chí và phân bổ nhân sự vào từng chu kỳ.",
         "Triển khai tổng hợp và báo cáo đánh giá cấp tổng công ty, số hóa và chuẩn hóa quy trình đánh giá nhân sự.",
       ],

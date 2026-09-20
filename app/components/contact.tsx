@@ -8,6 +8,13 @@ import {
   PhoneIcon,
 } from "./icons";
 
+/** "https://www.linkedin.com/in/handle/" → "in/handle"; "https://host.tld/" → "host.tld". */
+function displayUrl(href: string, prefix?: string): string {
+  const { hostname, pathname } = new URL(href);
+  const path = pathname.replace(/\/$/, "");
+  return prefix && path.startsWith(`/${prefix}/`) ? path.slice(1) : hostname;
+}
+
 export function Contact({ content }: { content: Content }) {
   const copy = content.sections.contact;
   const { channels } = content.ui;
@@ -27,13 +34,13 @@ export function Contact({ content }: { content: Content }) {
     },
     {
       label: channels.linkedin,
-      value: "in/nhutminhit2001",
+      value: displayUrl(profile.socials.linkedin, "in"),
       href: profile.socials.linkedin,
       Icon: LinkedInIcon,
     },
     {
       label: channels.website,
-      value: "nhutminhit.io.vn",
+      value: displayUrl(profile.socials.website),
       href: profile.socials.website,
       Icon: GlobeIcon,
     },

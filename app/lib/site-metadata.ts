@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { Content } from "../data/content";
 import { profile } from "../data/shared";
+import { brand } from "./theme";
 
 const sharedKeywords = [
   "Nguyễn Nhựt Minh",
@@ -78,9 +79,9 @@ export function buildMetadata(content: Content): Metadata {
       siteName: `${profile.nameEn} — Portfolio`,
       title,
       description,
-      firstName: "Minh",
-      lastName: "Nguyen Nhut",
-      username: "NhutMinhIT",
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      username: profile.username,
       // og:image comes from each language's opengraph-image.tsx file convention.
     },
     twitter: {
@@ -103,7 +104,7 @@ export function buildMetadata(content: Content): Metadata {
 }
 
 export const siteViewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: brand.bg,
   // The site ships both themes; the theme toggle picks between them.
   colorScheme: "dark light",
   width: "device-width",

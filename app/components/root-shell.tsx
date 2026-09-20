@@ -1,18 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import type { Content } from "../data/content";
 import { certifications, profile, skills } from "../data/shared";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { fontClassName } from "../lib/fonts";
 
 function JsonLd({ content }: { content: Content }) {
   const jsonLd = {
@@ -32,8 +20,8 @@ function JsonLd({ content }: { content: Content }) {
     sameAs: [profile.socials.github, profile.socials.linkedin, profile.socials.website],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Ho Chi Minh City",
-      addressCountry: "VN",
+      addressLocality: profile.city,
+      addressCountry: profile.countryCode,
     },
     knowsAbout: skills.flatMap((group) => group.items),
     alumniOf: content.educations.map((edu) => ({
@@ -46,7 +34,7 @@ function JsonLd({ content }: { content: Content }) {
       credentialCategory: "certificate",
       recognizedBy: { "@type": "Organization", name: cert.issuer },
     })),
-    worksFor: { "@type": "Organization", name: "THACO Group" },
+    worksFor: { "@type": "Organization", name: profile.employer },
   };
 
   return (
@@ -69,7 +57,7 @@ export function RootShell({
     <html
       lang={content.htmlLang}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontClassName} h-full antialiased`}
     >
       <body
         suppressHydrationWarning

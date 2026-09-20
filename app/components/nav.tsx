@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Content } from "../data/content";
 import { profile } from "../data/shared";
 import { LanguageToggle } from "./language-toggle";
@@ -9,10 +9,33 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function Nav({ content }: { content: Content }) {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const { ui, navLinks } = content;
 
+  // While the mobile menu is open, close it on Escape or on a tap outside the header.
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [open]);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-bg)_80%,transparent)] backdrop-blur-md">
+    <header
+      ref={headerRef}
+      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-bg)_80%,transparent)] backdrop-blur-md"
+    >
       <nav
         className="relative mx-auto flex h-16 max-w-5xl items-center justify-between px-5"
         aria-label="Primary"

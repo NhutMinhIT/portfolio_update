@@ -47,8 +47,7 @@ export function Hero({ content }: { content: Content }) {
             </h1>
 
             <p
-              className="reveal mt-4 flex flex-wrap items-center font-mono text-base text-[var(--color-accent-2)] sm:text-lg"
-              style={{ animationDelay: "0.05s" }}
+              className="reveal [animation-delay:50ms] mt-4 flex flex-wrap items-center font-mono text-base text-[var(--color-accent-2)] sm:text-lg"
             >
               {content.headline.split(" | ").map((keyword, index, all) => (
                 <span key={keyword} className="whitespace-nowrap">
@@ -63,23 +62,20 @@ export function Hero({ content }: { content: Content }) {
             </p>
 
             <p
-              className="reveal mt-6 max-w-xl text-base leading-relaxed text-[var(--color-muted)] sm:text-lg"
-              style={{ animationDelay: "0.1s" }}
+              className="reveal [animation-delay:100ms] mt-6 max-w-xl text-base leading-relaxed text-[var(--color-muted)] sm:text-lg"
             >
               {content.tagline}
             </p>
 
             <div
-              className="reveal mt-6 flex items-center gap-2 text-sm text-[var(--color-muted)]"
-              style={{ animationDelay: "0.12s" }}
+              className="reveal [animation-delay:120ms] mt-6 flex items-center gap-2 text-sm text-[var(--color-muted)]"
             >
               <MapPinIcon width={16} height={16} />
               {content.location}
             </div>
 
             <div
-              className="reveal mt-8 flex flex-wrap items-center gap-3"
-              style={{ animationDelay: "0.15s" }}
+              className="reveal [animation-delay:150ms] mt-8 flex flex-wrap items-center gap-3"
             >
               <a
                 href="#contact"
@@ -132,8 +128,7 @@ export function Hero({ content }: { content: Content }) {
           </div>
 
           <div
-            className="reveal relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none"
-            style={{ animationDelay: "0.1s" }}
+            className="reveal [animation-delay:100ms] relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none"
           >
             <div
               className="pointer-events-none absolute -inset-4 rounded-[2rem] opacity-30 blur-2xl"
@@ -158,8 +153,7 @@ export function Hero({ content }: { content: Content }) {
         </div>
 
         <dl
-          className="reveal mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4"
-          style={{ animationDelay: "0.2s" }}
+          className="reveal [animation-delay:200ms] mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4"
         >
           {ui.stats.map((stat) => (
             <div

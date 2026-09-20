@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { contentEn } from "./data/content.en";
 import { profile } from "./data/shared";
+import { brand } from "./lib/theme";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -9,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: contentEn.metaDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#0a0a0b",
-    theme_color: "#0a0a0b",
+    background_color: brand.bg,
+    theme_color: brand.bg,
     icons: [
       {
         src: "/icon-192.png",

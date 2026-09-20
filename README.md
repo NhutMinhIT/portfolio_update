@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# nhutminhit.io.vn
 
-## Getting Started
+Personal portfolio of Nguyễn Nhựt Minh — a bilingual (English / Vietnamese), fully static one-page site.
 
-First, run the development server:
+Live: <https://nhutminhit.io.vn> · Vietnamese: <https://nhutminhit.io.vn/vi>
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack) + React 19 + TypeScript
+- Tailwind CSS v4 (`@theme` tokens in `app/globals.css`, light/dark via `data-theme`)
+- No database, no CMS — all content lives in typed TypeScript files
+- Docker (standalone output) for self-hosting
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
+yarn dev      # http://localhost:3000
+yarn lint     # eslint
+yarn build    # production build (also type-checks)
+yarn start    # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+├── (en)/                 # English root layout + "/" page + OG image
+├── (vi)/vi/              # Vietnamese root layout + "/vi" page + OG image
+├── components/           # Section components (hero, about, experience, …)
+├── data/
+│   ├── content.ts        # Content types + { en, vi } registry
+│   ├── content.en.ts     # All English copy
+│   ├── content.vi.ts     # All Vietnamese copy
+│   └── shared.ts         # Language-neutral data: profile, skills, certifications
+├── lib/
+│   ├── fonts.ts          # Geist / Geist Mono (next/font)
+│   ├── theme.ts          # Brand colours for OG images / manifest
+│   ├── site-metadata.ts  # <head> metadata builder (title, OG, hreflang, robots)
+│   └── og-image.tsx      # Social card renderer (next/og)
+├── global-not-found.tsx  # Styled 404 (experimental `globalNotFound`)
+├── manifest.ts · robots.ts · sitemap.ts
+└── globals.css
+public/
+├── avatar.png            # Nav avatar (128px)
+├── nguyennhutminh.png    # Hero portrait (served through next/image)
+├── nguyennhutminh-og.jpg # 512px portrait embedded in the OG image
+├── CV_*.pdf              # "Download CV" target
+└── logo-*.png            # Footer venture logos
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Each language is its own route with its own root layout so the statically rendered HTML has the correct `<html lang>`. Because there are two root layouts, the 404 page uses `global-not-found.tsx` (enabled in `next.config.ts`).
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+| What | Where |
+| --- | --- |
+| Name, contact, socials, CV path, employer, city | `app/data/shared.ts` → `profile` |
+| Skill groups, certifications (JSON-LD only) | `app/data/shared.ts` |
+| Headline, summary, experience, projects, awards, UI labels | `app/data/content.en.ts` **and** `app/data/content.vi.ts` |
+| SEO keywords | `app/lib/site-metadata.ts` |
+| Colours, fonts | `app/globals.css` (`@theme`) — mirror colour changes in `app/lib/theme.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Both content files implement the same `Content` type from `app/data/content.ts`, so a missing field fails `yarn build`. Keep the two languages in sync: projects are matched to roles by `project.org === experience.company`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+After changing content, bump `lastModified` in `app/sitemap.ts`.
 
-## Deploy on Vercel
+To replace the portrait, update `public/nguyennhutminh.png` (hero) and regenerate the OG copy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+sips -s format jpeg -s formatOptions 85 -Z 512 public/nguyennhutminh.png --out public/nguyennhutminh-og.jpg
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO
+
+- Per-language `<title>`, description, Open Graph, Twitter card, canonical + `hreflang` alternates
+- OG images generated at build time (`opengraph-image.tsx` per language)
+- `sitemap.xml`, `robots.txt`, `manifest.webmanifest`
+- `Person` JSON-LD in `app/components/root-shell.tsx`
+
+## Docker
+
+`next.config.ts` sets `output: "standalone"`, so the image ships only `server.js` and traced dependencies.
+
+```bash
+docker compose up --build -d   # http://localhost:5173
+```
+
+The container listens on port `5173` (see `docker-compose.yml`).
