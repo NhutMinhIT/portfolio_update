@@ -43,7 +43,7 @@ app/
 └── globals.css
 public/
 ├── avatar.png            # Nav avatar (128px)
-├── nguyennhutminh.png    # Hero portrait (served through next/image)
+├── nguyennhutminh.jpg    # Hero portrait (next/image) + JSON-LD image
 ├── nguyennhutminh-og.jpg # 512px portrait embedded in the OG image
 ├── CV_*.pdf              # "Download CV" target
 └── logo-*.png            # Footer venture logos
@@ -63,12 +63,12 @@ Each language is its own route with its own root layout so the statically render
 
 Both content files implement the same `Content` type from `app/data/content.ts`, so a missing field fails `yarn build`. Keep the two languages in sync: projects are matched to roles by `project.org === experience.company`.
 
-After changing content, bump `lastModified` in `app/sitemap.ts`.
+After changing content, bump `contentUpdatedAt` in `app/data/shared.ts` (feeds the sitemap `<lastmod>` and JSON-LD `dateModified`).
 
-To replace the portrait, update `public/nguyennhutminh.png` (hero) and regenerate the OG copy:
+To replace the portrait, overwrite `public/nguyennhutminh.jpg` (1280×1280) and regenerate the OG copy:
 
 ```bash
-sips -s format jpeg -s formatOptions 85 -Z 512 public/nguyennhutminh.png --out public/nguyennhutminh-og.jpg
+sips -s format jpeg -s formatOptions 85 -Z 512 public/nguyennhutminh.jpg --out public/nguyennhutminh-og.jpg
 ```
 
 ## SEO
@@ -76,7 +76,7 @@ sips -s format jpeg -s formatOptions 85 -Z 512 public/nguyennhutminh.png --out p
 - Per-language `<title>`, description, Open Graph, Twitter card, canonical + `hreflang` alternates
 - OG images generated at build time (`opengraph-image.tsx` per language)
 - `sitemap.xml`, `robots.txt`, `manifest.webmanifest`
-- `Person` JSON-LD in `app/components/root-shell.tsx`
+- `ProfilePage` → `Person` JSON-LD in `app/components/root-shell.tsx`
 
 ## Docker
 

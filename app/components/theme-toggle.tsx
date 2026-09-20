@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import type { Content } from "../data/content";
+import { themeColor } from "../lib/theme";
 import { MoonIcon, SunIcon } from "./icons";
 
 type Theme = "light" | "dark";
@@ -31,6 +32,9 @@ function getServerSnapshot(): Theme | null {
 
 function setTheme(next: Theme) {
   document.documentElement.dataset.theme = next;
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", themeColor[next]);
   try {
     localStorage.setItem("theme", next);
   } catch {

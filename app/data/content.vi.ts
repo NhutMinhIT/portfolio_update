@@ -32,8 +32,9 @@ export const contentVi: Content = {
     },
   ],
   location: "TP. Hồ Chí Minh, Việt Nam",
+  // Giữ dưới ~160 ký tự: Google cắt snippet dài hơn.
   metaDescription:
-    "Kỹ sư Phần mềm tại THACO Group, xây dựng hệ thống doanh nghiệp; học viên Thạc sĩ Ứng dụng AI, nghiên cứu Computer Vision và NLP; phụ trách chuyển đổi số trong lĩnh vực logistics và thương mại điện tử.",
+    "Kỹ sư Phần mềm tại THACO Group, học viên Thạc sĩ Ứng dụng AI (Computer Vision & NLP), phụ trách chuyển đổi số trong logistics và thương mại điện tử.",
   navLinks: [
     { href: "#about", label: "Giới thiệu" },
     { href: "#education", label: "Học vấn" },

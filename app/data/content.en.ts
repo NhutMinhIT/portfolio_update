@@ -45,8 +45,9 @@ export const contentEn: Content = {
   // Founder version — temporarily disabled.
   // metaDescription:
   //   "Software Engineer at THACO Group building enterprise systems, Master’s student in AI Applications researching Computer Vision and NLP, and Founder of Phuc Nguyen Trading & Import-Export.",
+  // Keep under ~160 characters: Google truncates longer snippets.
   metaDescription:
-    "Software Engineer at THACO Group building enterprise systems, Master’s student in AI Applications researching Computer Vision and NLP, and driving digital transformation in logistics & e-commerce.",
+    "Software Engineer at THACO Group, Master’s student in AI Applications (Computer Vision & NLP), driving digital transformation in logistics & e-commerce.",
   navLinks: [
     { href: "#about", label: "About" },
     { href: "#education", label: "Education" },

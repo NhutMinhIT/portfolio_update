@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { Content } from "../data/content";
-import { profile } from "../data/shared";
+import { absoluteUrl, profile } from "../data/shared";
 import { brand } from "./theme";
 
 const sharedKeywords = [
@@ -75,7 +75,7 @@ export function buildMetadata(content: Content): Metadata {
       type: "profile",
       locale: content.lang === "vi" ? "vi_VN" : "en_US",
       alternateLocale: content.lang === "vi" ? ["en_US"] : ["vi_VN"],
-      url: new URL(content.path, profile.url).toString(),
+      url: absoluteUrl(content.path),
       siteName: `${profile.nameEn} — Portfolio`,
       title,
       description,

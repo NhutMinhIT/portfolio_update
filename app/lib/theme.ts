@@ -10,6 +10,12 @@ export const brand = {
   accent2: "#22d3ee",
 } as const;
 
+/** Browser-chrome colour per theme; mirrors `--color-bg` for each `data-theme`. */
+export const themeColor = {
+  dark: brand.bg,
+  light: "#f7f8fa",
+} as const;
+
 /** `hex` (#rrggbb) with an alpha channel, for Satori/OG gradients. */
 export function withAlpha(hex: string, alpha: number): string {
   const r = parseInt(hex.slice(1, 3), 16);

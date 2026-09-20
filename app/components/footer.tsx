@@ -10,6 +10,8 @@ const ventures = [
     src: "/logo-phuc-nguyen-log.png",
     width: 300,
     height: 200,
+    // Rendered height × aspect ratio, so next/image builds a srcset that fits.
+    sizes: "60px",
     className: "h-10 w-auto",
   },
   {
@@ -18,6 +20,7 @@ const ventures = [
     src: "/logo-dien-may.png",
     width: 914,
     height: 200,
+    sizes: "128px",
     className: "h-7 w-auto",
   },
 ];
@@ -51,6 +54,7 @@ export function Footer({ content }: { content: Content }) {
                   alt={venture.name}
                   width={venture.width}
                   height={venture.height}
+                  sizes={venture.sizes}
                   className={venture.className}
                 />
               </a>

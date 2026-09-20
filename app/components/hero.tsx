@@ -36,13 +36,14 @@ export function Hero({ content }: { content: Content }) {
               {ui.badge}
             </p>
 
-            <h1 className="reveal max-w-3xl text-balance text-4xl font-bold leading-tight tracking-tight text-[var(--color-fg)] sm:text-6xl">
-              <span className="block">{ui.greeting}</span>
-              <span className="mt-2 block text-3xl text-[var(--color-fg)] sm:text-5xl">
-                {ui.intro}{" "}
-                <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] bg-clip-text text-transparent">
-                  {profile.name}
-                </span>
+            {/* The greeting is decorative; the H1 is the page's subject (the name). */}
+            <p className="reveal max-w-3xl text-balance text-4xl font-bold leading-tight tracking-tight text-[var(--color-fg)] sm:text-6xl">
+              {ui.greeting}
+            </p>
+            <h1 className="reveal mt-2 max-w-3xl text-balance text-3xl font-bold leading-tight tracking-tight text-[var(--color-fg)] sm:text-5xl">
+              {ui.intro}{" "}
+              <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] bg-clip-text text-transparent">
+                {profile.name}
               </span>
             </h1>
 
@@ -140,7 +141,7 @@ export function Hero({ content }: { content: Content }) {
             />
             <div className="relative overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-2xl">
               <Image
-                src="/nguyennhutminh.png"
+                src={profile.portrait}
                 alt={`${profile.name} — ${content.role}`}
                 width={1024}
                 height={1024}

@@ -15,12 +15,25 @@ export const profile = {
   yearsOfExperience: 5,
   url: "https://nhutminhit.io.vn",
   cv: "/CV_NguyenNhutMinh_SoftwareEngineer.pdf",
+  /** Hero portrait; also the `image` in structured data, so it must be a real file in /public. */
+  portrait: "/nguyennhutminh.jpg",
   socials: {
     github: "https://github.com/NhutMinhIT",
     linkedin: "https://www.linkedin.com/in/nhutminhit2001/",
     website: "https://nhutminhit.io.vn",
   },
 } as const;
+
+/**
+ * Bump when the page content changes. Feeds sitemap <lastmod> and JSON-LD
+ * dateModified; a build-time `new Date()` would look modified on every deploy.
+ */
+export const contentUpdatedAt = "2026-09-20";
+
+/** Absolute URL for a site path, without a trailing slash on the root so it matches the canonical. */
+export function absoluteUrl(path: string): string {
+  return path === "/" ? profile.url : `${profile.url}${path}`;
+}
 
 export type SkillGroup = {
   category: string;

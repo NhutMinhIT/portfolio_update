@@ -1,30 +1,26 @@
 import type { MetadataRoute } from "next";
-import { profile } from "./data/shared";
+import { absoluteUrl, contentUpdatedAt } from "./data/shared";
 
-/**
- * Bump this when the page content changes. A build-time `new Date()` would
- * mark the pages as modified on every deploy, which crawlers learn to ignore.
- */
-const lastModified = new Date("2026-09-20");
+const lastModified = new Date(contentUpdatedAt);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const alternates = {
     languages: {
-      en: profile.url,
-      vi: `${profile.url}/vi`,
+      en: absoluteUrl("/"),
+      vi: absoluteUrl("/vi"),
     },
   };
 
   return [
     {
-      url: profile.url,
+      url: absoluteUrl("/"),
       lastModified,
       changeFrequency: "monthly",
       priority: 1,
       alternates,
     },
     {
-      url: `${profile.url}/vi`,
+      url: absoluteUrl("/vi"),
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
