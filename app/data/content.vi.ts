@@ -126,7 +126,7 @@ export const contentVi: Content = {
     },
   ],
   awards: [
-    { title: "Xếp loại nhân viên: Tốt – Rất tốt", org: "THACO Group", year: "2025" },
+    { title: "Xếp loại nhân viên: Khá", org: "THACO Group", year: "2025" },
     { title: "Học bổng Thạc sĩ cao nhất", org: "Đại học FPT", year: "2025" },
     { title: "Sinh viên Danh dự của kỳ", org: "Đại học FPT", year: "2021" },
     { title: "Giải Nhì – Cuộc thi F-Voice", org: "Đại học FPT", year: "2020" },

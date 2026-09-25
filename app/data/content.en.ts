@@ -141,7 +141,7 @@ export const contentEn: Content = {
     },
   ],
   awards: [
-    { title: "Employee Performance Rating: Good – Very Good", org: "THACO Group", year: "2025" },
+    { title: "Employee Performance Rating: Good", org: "THACO Group", year: "2025" },
     { title: "Highest Master's Scholarship", org: "FPT University", year: "2025" },
     { title: "Honor Student of the Semester", org: "FPT University", year: "2021" },
     { title: "Second Prize – F-Voice Contest", org: "FPT University", year: "2020" },
